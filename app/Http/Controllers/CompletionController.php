@@ -12,7 +12,7 @@ use Illuminate\Routing\Controller as BaseController;
 class CompletionController extends Controller
 {
 
-    const API_KEY = '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';
+    const API_KEY = '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';
 
     public function index()
     {
