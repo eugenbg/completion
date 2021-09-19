@@ -12,8 +12,6 @@ use Illuminate\Routing\Controller as BaseController;
 class CompletionController extends Controller
 {
 
-    const API_KEY = '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';
-
     public function index()
     {
         return view('completion', ['text' => '']);
@@ -60,8 +58,9 @@ Seed Words: $text
 Email: 
 EOD;
 
+        $apiKey = env('API_KEY');
         $response = $client->post('https://api.openai.com/v1/engines/curie-instruct-beta/completions', [
-            'headers' => ['Authorization' => sprintf('Bearer %s', self::API_KEY)],
+            'headers' => ['Authorization' => sprintf('Bearer %s', $apiKey)],
             'json' => [
                 'prompt' => $prompt,
                 'max_tokens' => 200,
