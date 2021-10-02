@@ -2,11 +2,13 @@
 namespace App\Http\Controllers;
 
 
+use App\Mail\WelcomeEmail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -22,6 +24,7 @@ class UserController extends Controller
         $response->setStatusCode(200);
         Log::info('incoming request', $request->all());
         $this->createUser($data);
+        Mail::to($data['email'])->send(new WelcomeEmail($data));
         return $response->send();
     }
 
