@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompletionController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [CompletionController::class, 'index']);
 Route::post('/', [CompletionController::class, 'generateText']);
+
+Route::post('/register', [UserController::class, 'register']);
+Route::get('/user-list', [UserController::class, 'listUsers']);
