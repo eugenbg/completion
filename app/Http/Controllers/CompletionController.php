@@ -72,6 +72,11 @@ EOD;
         ]);
 
         $result = json_decode($response->getBody()->__toString(), true);
-        return view('completion', [ 'text' => $result["choices"][0]["text"]]);
+        return view('completion', [ 'text' => $this->formatText($result["choices"][0]["text"])]);
+    }
+
+    private function formatText($text)
+    {
+        return str_replace("\n", '<br>', $text);
     }
 }

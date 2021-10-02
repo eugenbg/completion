@@ -102,7 +102,7 @@
 </head>
 <body>
 <header>
-    <h1>Browser speech recognition</h1>
+    <h1>Email Generator</h1>
 </header>
 <script>
   window.addEventListener("DOMContentLoaded", () => {
@@ -151,15 +151,20 @@
 
 <main>
     <form method="POST" action="/">
+        <h2>Provide a few words and click "generate email"</h2>
         @csrf
 
-        <textarea rows="5" cols="50" name="text" id="textarea"></textarea>
-        <button type="submit">Complete</button>
-        <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-        <pre>{{$text}}</pre>
+        <textarea rows="5" cols="50" name="text" id="textarea" style="border: 3px solid red"></textarea>
+        <div>
+            <button type="submit">Generate Email</button>
+            <button id="button" type="button">Start listening</button>
+            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+        </div>
+        <div style="padding: 1em">
+            {!! $text !!}
+        </div>
     </form>
 
-    <button id="button">Start listening</button>
     <div id="result"></div>
     <p id="message" hidden aria-hidden="true">
         Your browser doesn't support Speech Recognition. Sorry.
